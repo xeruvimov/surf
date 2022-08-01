@@ -86,6 +86,7 @@ public class Index {
                 //сложные лямбда выражения лучше выносить в отдельные методы
                 strings.stream().flatMap(str -> Stream.of(str.split(" "))).forEach(word -> invertedIndex.compute(word, (k, v) -> {
                     //else можно опустить
+                    //магическая константа
                     if (v == null) return List.of(new Pointer(1, take.toString()));
                     else {
                         ArrayList<Pointer> pointers = new ArrayList<>();
@@ -93,6 +94,7 @@ public class Index {
                         //сложные условия лучше выносить в отдельный метод
                         //если условие true то выполнение можно заканчивать, т.к. следующий forEach ничего не сделает
                         if (v.stream().noneMatch(pointer -> pointer.filePath.equals(take.toString()))) {
+                            //магическая константа
                             pointers.add(new Pointer(1, take.toString()));
                         }
 
